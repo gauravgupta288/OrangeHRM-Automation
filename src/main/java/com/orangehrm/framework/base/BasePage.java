@@ -34,4 +34,6 @@ public abstract class BasePage {
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
+
+    // Generic method to fetch column data by column name
 }
