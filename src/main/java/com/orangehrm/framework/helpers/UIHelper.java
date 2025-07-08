@@ -72,6 +72,7 @@ public class UIHelper {
         return columnCells.stream()
                 .map(WebElement::getText)
                 .filter(text -> !text.trim().isEmpty())
+                .skip(1)
                 .collect(Collectors.toList());
     }
 }

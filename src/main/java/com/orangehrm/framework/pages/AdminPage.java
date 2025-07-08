@@ -1,6 +1,8 @@
 package com.orangehrm.framework.pages;
 
 import com.orangehrm.framework.base.BasePage;
+import com.orangehrm.framework.helpers.UIHelper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,14 +13,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class AdminPage extends BasePage {
+
     public AdminPage(WebDriver driver) {
         super(driver);
-
-
     }
 
-    @FindBy(xpath = "//*[contains(@class, 'oxd-text oxd-text--span') and text()='Admin']")
-    private WebElement adminSidebar;
+
     @FindBy(css = ".oxd-form-row .oxd-input.oxd-input")
     private WebElement usernameInput;
 
@@ -43,5 +43,7 @@ public class AdminPage extends BasePage {
             return false;
         }
     }
-
+    public void clickOnAdminSidebar(){
+        uiHelper.click(getSidebarByHeader("Admin"));
+    }
 }

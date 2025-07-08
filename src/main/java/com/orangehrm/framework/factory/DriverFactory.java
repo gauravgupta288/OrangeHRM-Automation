@@ -1,5 +1,9 @@
 package com.orangehrm.framework.factory;
 
+import com.orangehrm.framework.drivers.ChromeDriverManager;
+import com.orangehrm.framework.drivers.DriverManager;
+import com.orangehrm.framework.drivers.EdgeDriverManager;
+import com.orangehrm.framework.drivers.FirefoxDriverManager;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,27 +11,32 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
-    public static void initDriver(String browser) {
-        if (browser.equalsIgnoreCase("chrome")) {
-            driver.set(new ChromeDriver());
-        } else if (browser.equalsIgnoreCase("firefox")) {
-            driver.set(new FirefoxDriver());
-        }else if(browser.equalsIgnoreCase("edge")){
-            driver.set(new EdgeDriver());
-        }else{
-            throw new InvalidArgumentException("Invalid Argument given");
+    public static DriverManager getDriverManager(String browser) {
+        switch (browser.toLowerCase()){
+            case "chrome":
+                return new ChromeDriverManager();
+            case "firefox":
+                return new FirefoxDriverManager();
+            case "edge":
+                return new EdgeDriverManager();
+            default:
+                return new ChromeDriverManager();
         }
     }
 
+    public static void initDriver(String browser){
+        DriverManager driverManager = getDriverManager(browser);
+        driverThreadLocal.set(driverManager.getDriver());
+    }
     public static WebDriver getDriver() {
-        return driver.get();
+        return driverThreadLocal.get();
     }
 
     public static void quitDriver() {
-        driver.get().quit();
-        driver.remove();
+        driverThreadLocal.get().quit();
+        driverThreadLocal.remove();
     }
 }
 
