@@ -29,10 +29,12 @@ public class BaseTest {
 
         DriverFactory.initDriver(browser);
         driver = DriverFactory.getDriver();
+        logger.info("Driver initiated");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        driver.get(ConfigReader.get("base.url"));
+        String baseUrl = ConfigReader.get("base.url");
+        driver.get(baseUrl);
+        logger.info("URL loaded" + baseUrl);
     }
 
     @BeforeMethod()
