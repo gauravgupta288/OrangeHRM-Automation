@@ -16,13 +16,12 @@ public class DriverFactory {
     public static DriverManager getDriverManager(String browser) {
         switch (browser.toLowerCase()){
             case "chrome":
+            default:
                 return new ChromeDriverManager();
             case "firefox":
                 return new FirefoxDriverManager();
             case "edge":
                 return new EdgeDriverManager();
-            default:
-                return new ChromeDriverManager();
         }
     }
 
