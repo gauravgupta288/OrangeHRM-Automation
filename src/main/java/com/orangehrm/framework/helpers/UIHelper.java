@@ -49,6 +49,16 @@ public class UIHelper {
         dropdown.selectByVisibleText(visibleText);
     }
 
+    public void selectDropdownByIndex(By locator, int visibleText) {
+        Select dropdown = new Select(waitForElementToBeVisible(locator));
+        dropdown.selectByIndex(visibleText);
+    }
+
+    public void selectDropdownByValue(By locator, String visibleText) {
+        Select dropdown = new Select(waitForElementToBeVisible(locator));
+        dropdown.selectByValue(visibleText);
+    }
+
     // Get all cell values from column by header name (used for tables like OrangeHRM)
     public List<String> getTableColumnData(String columnName) {
         List<WebElement> headers = driver.findElements(By.xpath("//div[@role='columnheader']"));
