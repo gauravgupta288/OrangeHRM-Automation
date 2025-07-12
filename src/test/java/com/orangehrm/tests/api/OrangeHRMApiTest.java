@@ -33,7 +33,7 @@ public class OrangeHRMApiTest {
                 .header("sec-ch-ua", "\"Google Chrome\";v=\"137\", \"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"")
                 .header("sec-ch-ua-mobile", "?0")
                 .header("sec-ch-ua-platform", "\"Windows\"")
-                .cookie("orangehrm", "bls4tm7cp164g8j3q8dp49pp0t");
+                .cookie("orangehrm", "38oebkjsh9tna13b5h5uf4dgc0");
     }
     @Test
     public void userTest() {
