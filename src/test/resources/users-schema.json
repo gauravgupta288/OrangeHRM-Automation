@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "userName": { "type": "string" },
+          "deleted": { "type": "boolean" },
+          "status": { "type": "boolean" },
+          "employee": {
+            "type": "object",
+            "properties": {
+              "empNumber": { "type": "integer" },
+              "employeeId": { "type": "string" },
+              "firstName": { "type": "string" },
+              "middleName": { "type": "string" },
+              "lastName": { "type": "string" },
+              "terminationId": {
+                "anyOf": [
+                  { "type": "integer" },
+                  { "type": "null" }
+                ]
+              }
+            },
+            "required": ["empNumber", "employeeId", "firstName", "middleName", "lastName"]
+          },
+          "userRole": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "name": { "type": "string" },
+              "displayName": { "type": "string" }
+            },
+            "required": ["id", "name", "displayName"]
+          }
+        },
+        "required": ["id", "userName", "deleted", "status", "employee", "userRole"]
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer" }
+      },
+      "required": ["total"]
+    },
+    "rels": {
+      "type": "array"
+    }
+  },
+  "required": ["data", "meta", "rels"]
+}
