@@ -20,7 +20,7 @@ public class RequestSpecFactory {
                     .addHeader("sec-ch-ua", "\"Google Chrome\";v=\"137\", \"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"")
                     .addHeader("sec-ch-ua-mobile", "?0")
                     .addHeader("sec-ch-ua-platform", "\"Windows\"")
-                    .addCookie("orangehrm", "38oebkjsh9tna13b5h5uf4dgc0")
+                    .addCookie("orangehrm", "r6agm09p9iukr5bp0ngcom3hlt")
                     .build();
         }
     }

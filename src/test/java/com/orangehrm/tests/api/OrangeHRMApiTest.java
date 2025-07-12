@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasKey;
 
 public class OrangeHRMApiTest extends ApiTestSetup {
 
@@ -57,7 +59,24 @@ public class OrangeHRMApiTest extends ApiTestSetup {
                 .statusCode(200)
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("users-schema.json"));
+    }
 
+    @Test
+    public void userTestFieldsValidation() {
 
+        given()
+                .spec(requestSpec)
+                .when()
+                .get("/web/index.php/api/v2/admin/users?limit=50&offset=0&sortField=u.userName&sortOrder=ASC")
+                .then()
+                .statusCode(200)
+                .assertThat()
+                .body("data[0].employee", allOf(
+                        hasKey("empNumber"),
+                        hasKey("employeeId"),
+                        hasKey("firstName"),
+                        hasKey("terminationI")
+                ))
+                ;
     }
 }
