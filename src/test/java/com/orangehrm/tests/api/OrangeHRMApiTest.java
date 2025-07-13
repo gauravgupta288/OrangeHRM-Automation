@@ -75,7 +75,7 @@ public class OrangeHRMApiTest extends ApiTestSetup {
                         hasKey("empNumber"),
                         hasKey("employeeId"),
                         hasKey("firstName"),
-                        hasKey("terminationI")
+                        hasKey("terminationId")
                 ))
                 ;
     }
