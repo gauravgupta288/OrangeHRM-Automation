@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="OrangeHRM Automation Suite" parallel="tests" thread-count="2">
 
-    <test name="Valid Login Test">
+<suite name="CrossBrowserSuite" parallel="tests" thread-count="2">
+    <test name="FirefoxTest">
+        <parameter name="env" value="stage" />
+        <parameter name="browser" value="firefox" />
         <classes>
             <class name="com.orangehrm.tests.ui.LoginTest"/>
+            <class name="com.orangehrm.tests.ui.AdminTest"/>
         </classes>
     </test>
-
-    <test name="Invalid Login Test">
-        <classes>
-            <class name="com.orangehrm.tests.ui.InvalidLoginTest"/>
-        </classes>
-    </test>
-
 </suite>

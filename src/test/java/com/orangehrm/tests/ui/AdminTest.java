@@ -23,8 +23,6 @@ public class AdminTest extends BaseTest {
     public void loginToApp(){
         String username = ConfigReader.get("username");
         String password = ConfigReader.get("password");
-        logger.info("*****************************************************************");
-        logger.info("Starting login test...");
 
         loginPage = new LoginPage(driver);
         loginPage.login(username, password);
