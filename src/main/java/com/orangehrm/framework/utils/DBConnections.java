@@ -17,7 +17,7 @@ public class DBConnections {
             String user = "root";
             String password = "password";
 
-            dbConnection =DriverManager.getConnection(url, user, password);
+            dbConnection = DriverManager.getConnection(url, user, password);
         }
 
         return dbConnection;

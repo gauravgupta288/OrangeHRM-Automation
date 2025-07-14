@@ -6,7 +6,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 
 public class EdgeDriverManager implements DriverManager{
     @Override
-    public WebDriver getDriver() {
+    public WebDriver getDriver(boolean local) {
         return new EdgeDriver();
     }
 }

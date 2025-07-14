@@ -1,6 +1,5 @@
 package com.orangehrm.framework.base;
 
-import com.orangehrm.framework.drivers.DriverManager;
 import com.orangehrm.framework.factory.DriverFactory;
 import com.orangehrm.framework.utils.ConfigReader;
 import io.qameta.allure.Description;
@@ -9,7 +8,6 @@ import org.slf4j.MDC;
 import org.testng.annotations.*;
 import com.orangehrm.framework.utils.Log;
 import org.slf4j.Logger;
-import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.time.Duration;

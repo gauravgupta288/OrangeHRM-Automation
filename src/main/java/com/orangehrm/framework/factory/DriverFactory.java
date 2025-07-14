@@ -4,6 +4,7 @@ import com.orangehrm.framework.drivers.ChromeDriverManager;
 import com.orangehrm.framework.drivers.DriverManager;
 import com.orangehrm.framework.drivers.EdgeDriverManager;
 import com.orangehrm.framework.drivers.FirefoxDriverManager;
+import com.orangehrm.framework.utils.ConfigReader;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,8 +27,9 @@ public class DriverFactory {
     }
 
     public static void initDriver(String browser){
+        boolean isLocal = Boolean.parseBoolean(ConfigReader.get("localExecution"));
         DriverManager driverManager = getDriverManager(browser);
-        driverThreadLocal.set(driverManager.getDriver());
+        driverThreadLocal.set(driverManager.getDriver(isLocal));
     }
     public static WebDriver getDriver() {
         return driverThreadLocal.get();
