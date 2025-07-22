@@ -1,9 +1,7 @@
 package com.orangehrm.framework.pages;
 
 import com.orangehrm.framework.base.BasePage;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -42,5 +40,10 @@ public class DashboardPage extends BasePage {
         }
     }
 
+    public void handleAlerts() {
+
+
+       Alert alert = driver.switchTo().alert();
+    }
 
 }
