@@ -6,27 +6,32 @@ import java.sql.SQLException;
 
 public class DBConnections {
 
-    private static Connection dbConnection = null;
+    private static ThreadLocal<Connection> dbConnection = null;
     private DBConnections(){
 
     }
 
     public Connection getDbConnection() throws SQLException {
-        if(dbConnection == null){
-            String url = "jdbc:mysql://localhost:3306/testdb";
-            String user = "root";
-            String password = "password";
 
-            dbConnection = DriverManager.getConnection(url, user, password);
+            Connection connection = dbConnection.get();
+            if(connection == null || connection.isClosed()){
+                String url = "jdbc:mysql://localhost:3306/testdb";
+                String user = "root";
+                String password = "password";
+
+                dbConnection.set(DriverManager.getConnection(url, user, password));
+            }
+
+            return connection;
         }
 
-        return dbConnection;
-    }
 
     public void closeConnection() throws SQLException {
-        if(dbConnection != null){
-            dbConnection.close();
-            dbConnection = null;
+
+        Connection connection = dbConnection.get();
+        if(connection != null || !connection.isClosed()){
+            dbConnection.remove();
+            connection.close();
         }
     }
 

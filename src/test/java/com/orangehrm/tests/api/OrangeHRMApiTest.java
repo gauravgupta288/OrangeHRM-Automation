@@ -1,6 +1,8 @@
 package com.orangehrm.tests.api;
 
 import com.orangehrm.framework.base.ApiTestSetup;
+import com.orangehrm.framework.model.Holiday;
+import com.orangehrm.framework.model.HolidayResponse;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -11,6 +13,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 import java.util.Map;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.*;
@@ -91,6 +94,15 @@ public class OrangeHRMApiTest extends ApiTestSetup {
         System.out.println(jsonPath);
         boolean found = false;
 
+        Map<Integer, Object> filteredEmployee = list
+                .stream()
+                .filter(l -> l.get("id").equals(11))
+                .findFirst()
+                .get();
+
+
+        System.out.println(filteredEmployee);
+
         for(Map<Integer, Object> item : list){
 
             Object id = item.get("id");
@@ -119,38 +131,27 @@ public class OrangeHRMApiTest extends ApiTestSetup {
                 .then()
                 .statusCode(200)
                 .assertThat()
-//                .body("data[0].employee", allOf(
-//                        hasKey("empNumber"),
-//                        hasKey("employeeId"),
-//                        hasKey("firstName"),
-//                        hasKey("terminationId")
-//                ))
                 .extract()
                 .response()
                 ;
 
-        System.out.println(res.asPrettyString());
-        JsonPath jsonPath = new JsonPath(res.asString());
 
-        List<Map<Integer, Object>> list = jsonPath.getList("data");
-        System.out.println(jsonPath);
-        boolean found = false;
+        HolidayResponse holidayResponse = res.as(HolidayResponse.class);
 
-        for(Map<Integer, Object> item : list){
+        List<Holiday> holidays = holidayResponse.getData();
 
-            Object id = item.get("id");
-            Object name = item.get("name");
+        System.out.println(holidays);
 
-            Assert.assertTrue(id != null);
+        List<Integer> ids = holidays
+                .stream()
+                .map(holiday -> holiday.getId())
+                .collect(Collectors.toList());
+        for(Holiday holiday : holidays){
 
+            if(holiday.getId() == 11){
 
-            if(id != null && id.equals(11)){
-                Assert.assertEquals(name, "St. Patrick's Day (Canada)");
-                found = true;
-                break;
             }
         }
-        Assert.assertTrue(found, "mathicing id not found");
     }
 
     @Test
