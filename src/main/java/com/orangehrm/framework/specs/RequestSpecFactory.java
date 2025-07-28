@@ -22,6 +22,7 @@ public class RequestSpecFactory {
                     .addHeader("sec-ch-ua-platform", "\"Windows\"")
                     .addCookie("orangehrm", "253d3o0g6b765i9tplb2qr15tc")
                     .build();
+
         }
     }
 
