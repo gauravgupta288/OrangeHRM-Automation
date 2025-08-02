@@ -10,6 +10,7 @@ import io.qameta.allure.testng.Tag;
 import static org.testng.Assert.*;
 
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -20,12 +21,14 @@ public class AdminTest extends BaseTest {
     private AdminPage adminPage;
     @BeforeTest
     @Description("Login to app")
-    public void loginToApp(){
+    public void loginToApp(@Optional("test") String str){
         String username = ConfigReader.get("username");
         String password = ConfigReader.get("password");
 
         loginPage = new LoginPage(driver);
         loginPage.login(username, password);
+
+        System.out.println(str);
     }
 
     @Test(description = "Test to verify that Admin table sorting is working")
