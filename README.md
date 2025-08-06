@@ -16,6 +16,7 @@
         - ✅ POM + Page factory
         - ✅ OOPS
         - ✅ GIT
+        - ✅ Github Actions
     
 
 
